@@ -35,6 +35,49 @@ var auftrag1 = new Auftrag(
     false
 );
 
+var auftrag2 = new Auftrag(
+    "4567",
+    "Liebherr",
+    245.00,
+    false
+);
+
+var auftrag3 = new Auftrag(
+    "3690",
+    "Liebherr",
+    124.55,
+    false
+);
+
+var auftraege = new List<Auftrag>();
+
+auftraege.Add(auftrag1);
+auftraege.Add(auftrag2);
+auftraege.Add(auftrag3);
+
+Console.WriteLine();
+
+/*foreach (Auftrag auftrag in auftraege)
+{
+    Console.WriteLine($"Auftrag {auftraege.IndexOf(auftrag)+1}");
+    Console.WriteLine($"Auftragsnummer: {auftrag.Auftragsnummer}");
+    Console.WriteLine($"Kunde: {auftrag.Kunde}");
+    Console.WriteLine($"Versandgewicht: {auftrag.Gewicht} kg");
+    Console.WriteLine($"Auftragsstatus: {auftrag.StatusPruefen()}");
+    Console.WriteLine("-----------------------");
+}*/
+
+for (int index = 0; index < auftraege.Count; index++)
+{   
+    Auftrag auftrag = auftraege[index];
+    Console.WriteLine($"Auftrag {index+1}");
+    Console.WriteLine($"Auftragsnummer: {auftrag.Auftragsnummer}");
+    Console.WriteLine($"Kunde: {auftrag.Kunde}");
+    Console.WriteLine($"Versandgewicht: {auftrag.Gewicht} kg");
+    Console.WriteLine($"Auftragsstatus: {auftrag.StatusPruefen()}");
+    Console.WriteLine("-----------------------");
+}
+
 /*Console.WriteLine($"Kunde: {auftrag1.Kunde}");
 Console.WriteLine($"Auftragsnummer: {auftrag1.Auftragsnummer}");
 Console.WriteLine($"Gewicht: {auftrag1.Gewicht} kg");
@@ -123,12 +166,7 @@ else
 
 Console.WriteLine($"Auftrag Versandbereit: {auftrag1.KannVersendetWerden()}");*/
 
-var auftrag2 = new Auftrag(
-    "4567",
-    "Liebherr",
-    245.00,
-    false
-);
+
 
 /*Console.WriteLine($"Auftrag Versandbereit: {auftrag2.KannVersendetWerden()}");
 
