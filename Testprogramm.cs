@@ -1,4 +1,5 @@
-﻿using System.Runtime.Intrinsics.X86;
+﻿using System.ComponentModel;
+using System.Runtime.Intrinsics.X86;
 
 var mitarbeiter = new Mitarbeiter(
     "Michael",
@@ -32,7 +33,7 @@ var auftrag1 = new Auftrag(
     "4711",
     "Liebherr",
     125.75,
-    false
+    true
 );
 
 var auftrag2 = new Auftrag(
@@ -67,16 +68,45 @@ Console.WriteLine();
     Console.WriteLine("-----------------------");
 }*/
 
-for (int index = 0; index < auftraege.Count; index++)
+for (int i = 0; i < auftraege.Count; i++)
 {   
-    Auftrag auftrag = auftraege[index];
-    Console.WriteLine($"Auftrag {index+1}");
+    Auftrag auftrag = auftraege[i];
+    Console.WriteLine($"Auftrag {i+1}");
     Console.WriteLine($"Auftragsnummer: {auftrag.Auftragsnummer}");
     Console.WriteLine($"Kunde: {auftrag.Kunde}");
     Console.WriteLine($"Versandgewicht: {auftrag.Gewicht} kg");
     Console.WriteLine($"Auftragsstatus: {auftrag.StatusPruefen()}");
     Console.WriteLine("-----------------------");
 }
+
+int anzahlOffeneAuftraege = 0;
+
+for (int i = 0; i < auftraege.Count; i++)
+{
+    Auftrag auftrag = auftraege[i];
+    if (!auftrag.AuftragAbgeschlossen)
+    {
+        anzahlOffeneAuftraege ++;
+    }
+}
+
+Console.WriteLine($"Anzahl offener Aufträge: {anzahlOffeneAuftraege}");
+
+double gesamtgewicht = 0;
+double durchschnittsGewicht = 0;
+
+for (int i = 0; i < auftraege.Count; i++)
+{
+    gesamtgewicht += auftraege[i].Gewicht;
+    
+}
+
+durchschnittsGewicht = gesamtgewicht / auftraege.Count;
+
+Console.WriteLine($"Gesamtgewicht der Aufträge: {gesamtgewicht:F2} kg.");
+Console.WriteLine($"Durchschnittliches Auftragsgewicht: {durchschnittsGewicht} kg.");
+
+
 
 /*Console.WriteLine($"Kunde: {auftrag1.Kunde}");
 Console.WriteLine($"Auftragsnummer: {auftrag1.Auftragsnummer}");
