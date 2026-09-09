@@ -1,0 +1,205 @@
+﻿using System.Runtime.Intrinsics.X86;
+
+var mitarbeiter = new Mitarbeiter(
+    "Michael",
+    "Georgoulis",
+    4711,
+    3500m
+    
+
+);
+
+Console.WriteLine(mitarbeiter.Vorname);
+Console.WriteLine(mitarbeiter.Monatsgehalt + "Euro");
+
+mitarbeiter.ErhoeheGehalt(500m);
+mitarbeiter.ErhoeheGehalt(500m);
+Console.WriteLine(mitarbeiter.Monatsgehalt + " Euro");
+
+try
+{
+    mitarbeiter.ErhoeheGehalt(-500m);
+
+}
+catch (ArgumentOutOfRangeException ex)
+{
+
+    Console.WriteLine(ex.Message);
+    Console.WriteLine(ex.ParamName);
+}
+
+var auftrag1 = new Auftrag(
+    "4711",
+    "Liebherr",
+    125.75,
+    false
+);
+
+/*Console.WriteLine($"Kunde: {auftrag1.Kunde}");
+Console.WriteLine($"Auftragsnummer: {auftrag1.Auftragsnummer}");
+Console.WriteLine($"Gewicht: {auftrag1.Gewicht} kg");
+Console.WriteLine($"Auftragstatus: {auftrag1.StatusPruefen()}");
+
+auftrag1.AuftragAbschliessen();
+Console.WriteLine($"Auftragstatus: {auftrag1.StatusPruefen()}");
+
+auftrag1.AuftragAbschliessen();
+Console.WriteLine($"Auftragstatus: {auftrag1.StatusPruefen()}");
+
+
+//Tests für Gewichtsänderung
+
+auftrag1.GewichtAendern(235.50);
+Console.WriteLine($"Gewicht: {auftrag1.Gewicht} kg");
+
+auftrag1.GewichtAendern(-235.50);
+Console.WriteLine($"Gewicht: {auftrag1.Gewicht} kg");
+
+auftrag1.GewichtAendern(0);
+Console.WriteLine($"Gewicht: {auftrag1.Gewicht} kg");
+
+auftrag1.GewichtAendern(1.4);
+Console.WriteLine($"Gewicht: {auftrag1.Gewicht} kg");
+
+// Tests für die Versandkostenberechnung
+
+Console.WriteLine($"Es werden Versandkosten in Höhe von {auftrag1.VersandkostenBerechnen()}€ für ein Sendungsgewicht von {auftrag1.Gewicht}kg fällig.");
+
+auftrag1.GewichtAendern(500.5);
+Console.WriteLine($"Gewicht: {auftrag1.Gewicht} kg");
+
+Console.WriteLine($"Es werden Versandkosten in Höhe von {auftrag1.VersandkostenBerechnen()}€ für ein Sendungsgewicht von {auftrag1.Gewicht}kg fällig.");
+
+auftrag1.GewichtAendern(100);
+Console.WriteLine($"Gewicht: {auftrag1.Gewicht}kg");
+
+Console.WriteLine($"Es werden Versandkosten in Höhe von {auftrag1.VersandkostenBerechnen()}€ für ein Sendungsgewicht von {auftrag1.Gewicht}kg fällig.");
+
+//Schwerlast Tests 
+
+if (auftrag1.IstSchwerlast())
+{
+    Console.WriteLine("Schwerlastauftrag");
+}
+else
+{
+    Console.WriteLine("Normaler Auftrag");
+}
+
+auftrag1.GewichtAendern(250);
+Console.WriteLine($"Gewicht: {auftrag1.Gewicht}kg");
+if (auftrag1.IstSchwerlast())
+{
+    Console.WriteLine("Schwerlastauftrag");
+}
+else
+{
+    Console.WriteLine("Normaler Auftrag");
+}
+
+auftrag1.GewichtAendern(251);
+Console.WriteLine($"Gewicht: {auftrag1.Gewicht}kg");
+if (auftrag1.IstSchwerlast())
+{
+    Console.WriteLine("Schwerlastauftrag");
+}
+else
+{
+    Console.WriteLine("Normaler Auftrag");
+}
+
+auftrag1.GewichtAendern(2000);
+Console.WriteLine($"Gewicht: {auftrag1.Gewicht}kg");
+if (auftrag1.IstSchwerlast())
+{
+    Console.WriteLine("Schwerlastauftrag");
+}
+else
+{
+    Console.WriteLine("Normaler Auftrag");
+}
+
+//Test für KannVersendetWerden()
+
+Console.WriteLine($"Auftrag Versandbereit: {auftrag1.KannVersendetWerden()}");*/
+
+var auftrag2 = new Auftrag(
+    "4567",
+    "Liebherr",
+    245.00,
+    false
+);
+
+/*Console.WriteLine($"Auftrag Versandbereit: {auftrag2.KannVersendetWerden()}");
+
+// Tests für GewichstKlasseErmitteln()
+// mittel start mit 245.00kg
+Console.WriteLine(auftrag2.GewichtsklasseErmitteln());
+
+auftrag2.GewichtAendern(101);
+Console.WriteLine(auftrag2.GewichtsklasseErmitteln());
+
+auftrag2.GewichtAendern(100);
+Console.WriteLine(auftrag2.GewichtsklasseErmitteln());
+
+// leicht
+auftrag2.GewichtAendern(89);
+Console.WriteLine(auftrag2.GewichtsklasseErmitteln());
+
+auftrag2.GewichtAendern(250);
+Console.WriteLine(auftrag2.GewichtsklasseErmitteln());
+
+// Schwerlast
+auftrag2.GewichtAendern(251);
+Console.WriteLine(auftrag2.GewichtsklasseErmitteln());
+
+auftrag2.GewichtAendern(1000);
+Console.WriteLine(auftrag2.GewichtsklasseErmitteln()); */
+
+// Test Transportpreisberechnen()
+// Gültige Werte
+try
+{
+    Console.WriteLine($"Transportpreis: {auftrag1.TransportpreisBerechnen(0.50, 10.00):F2} €");  
+}
+catch (ArgumentOutOfRangeException ex)
+{   
+    Console.WriteLine(ex.Message);
+    Console.WriteLine($"Ungüliger Parameter: {ex.ParamName}");
+}
+
+
+// ungültiger kilopreis 
+try
+{
+    Console.WriteLine($"Transportpreis: {auftrag1.TransportpreisBerechnen(-0.50, 10.00):F2} €");
+}
+catch (ArgumentOutOfRangeException ex)
+{   
+    Console.WriteLine(ex.Message);
+    Console.WriteLine($"Ungüliger Parameter: {ex.ParamName}");
+}
+
+// ungültige Grundgebühr 
+try
+{
+ Console.WriteLine($"Transportpreis: {auftrag1.TransportpreisBerechnen(0.50, -10.00):F2} €");
+}
+catch (ArgumentOutOfRangeException ex)
+{   
+    Console.WriteLine(ex.Message);
+    Console.WriteLine($"Ungüliger Parameter: {ex.ParamName}");
+}
+
+// beide Werte ungültig (beide negativ)
+// hier wird bisher nur der erste falsche Wert angezeigt. Das wird später noch verbessert.
+
+try
+{
+ Console.WriteLine($"Transportpreis: {auftrag1.TransportpreisBerechnen(-0.50, -10.00):F2} €");
+}
+catch (ArgumentOutOfRangeException ex)
+{   
+    Console.WriteLine(ex.Message);
+    Console.WriteLine($"Ungüliger Parameter: {ex.ParamName}");
+}
