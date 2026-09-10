@@ -51,6 +51,7 @@ public class Auftrag
 
     public void GewichtAendern(double neuesGewicht)
     {
+        
         if (neuesGewicht > 0)
         {
             Gewicht = neuesGewicht;
@@ -58,7 +59,7 @@ public class Auftrag
         }
         else
         {
-            Console.WriteLine("Der eingegebene Wert ist ungültig und muss größer als 0 sein, um eine erfolgreiche Änderung vorzunehmen. Versuchen Sie es bitte erneut.");
+            throw new ArgumentOutOfRangeException("Der eingegebene Wert ist ungültig.");
         }
     }
 
@@ -121,6 +122,7 @@ public class Auftrag
             
     }  
 
+    
 
 
 

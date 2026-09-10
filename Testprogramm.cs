@@ -103,9 +103,41 @@ for (int i = 0; i < auftraege.Count; i++)
 
 durchschnittsGewicht = gesamtgewicht / auftraege.Count;
 
-Console.WriteLine($"Gesamtgewicht der Aufträge: {gesamtgewicht:F2} kg.");
+Console.WriteLine($"Gesamtgewicht der Aufträge 😂: {gesamtgewicht:F2} kg.");
 Console.WriteLine($"Durchschnittliches Auftragsgewicht: {durchschnittsGewicht} kg.");
 
+bool eingabeGueltig = false;
+double neuesGewicht = 0;
+
+do
+{ 
+    Console.Write("Neues Gewicht eingeben: ");
+
+    string Eingabe = Console.ReadLine();
+    
+    try
+    { 
+        double.Parse(Eingabe);
+        
+        auftrag1.GewichtAendern(double.Parse(Eingabe));
+
+        eingabeGueltig = true;   
+    }
+    catch (FormatException ex)
+    {
+        Console.WriteLine($"{ex.Message} \n-> Die Eingabe darf nur einen Zahlenwert enthalten.");
+        Console.Write("Bitte eine neue Eingabe des Gewichts: ");
+    }
+    
+    catch (ArgumentOutOfRangeException ex)
+    {
+        Console.WriteLine($"{ex.Message} \n-> Die Eingabe liegt außerhalb des gültigen Wertebereichs.");
+        Console.WriteLine("Bitte geben sie einen gültigen Wert ein: ");
+    }
+    
+}
+
+while (!eingabeGueltig);
 
 
 /*Console.WriteLine($"Kunde: {auftrag1.Kunde}");
