@@ -1,4 +1,4 @@
-## ReadeMe
+## ReadMe
 
 this readme file is created to find out how this whole thing here works. 
 
